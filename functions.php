@@ -1,8 +1,26 @@
 <?php
 
+function wordpress1_theme_support(){
+	//adds dynamic title tag support
+	add_theme_support('title-tag');
+}
+
+add_action('after_setup_theme', 'wordpress1_theme_support');
+
+function wordpress1_menus(){
+	$locations = array(
+		'primary' => 'Desktop primary left sidebar',
+		'footer' => 'Footer menu items'
+	);
+
+	register_nav_menus($locations);
+}
+
+add_action('init', 'wordpress1_menus');
+
 function wordpress1_register_styles(){
 	$version = wp_get_theme()->get('Version');
-	wp_enqueue_style('wordpress1-main-styles', get_template_directory_uri() . "/style.css", array('wordpress1-bootstrap'), $version, 'all');
+	wp_enqueue_style('wordpress1-main-styles', get_template_directory_uri() . "/style.css", array('wordpress1-bootstrap'), $version, 'all'); 
 	wp_enqueue_style('wordpress1-bootstrap', "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css", array(), '4.4.1', 'all');
 	wp_enqueue_style('wordpress1-fontawesome', "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css", array(), '5.13.0', 'all');
 }
