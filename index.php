@@ -12,7 +12,12 @@
 						get_template_part('template-parts/content', 'archive');
 					}
 				}
-			?>
+            ?>
+            
+            <?php
+                the_posts_pagination();
+            ?>
+
 
 	    </article>
 	    
